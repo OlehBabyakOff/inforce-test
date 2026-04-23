@@ -16,7 +16,7 @@ class MongoClient implements IMongoClient {
         socketTimeoutMS: 45000,
       });
 
-      logger.info('MongoDB connected');
+      logger.info(`MongoDB connected on: ${ENV.MONGODB.URI}`);
 
       mongoose.connection.on('connected', () => {
         logger.info('MongoDB connected');
