@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 import { logger } from '../infrastructure/logger/pino.js';
 
@@ -6,7 +6,7 @@ import { BaseError } from '../errors/BaseError.js';
 import { INTERNAL_ERRORS } from '../constants/errors.js';
 
 export function errorHandler() {
-  return (err: Error, req: Request, res: Response) => {
+  return (err: Error, req: Request, res: Response, _: NextFunction) => {
     if (err instanceof BaseError) {
       logger.error(err.message, err);
 
