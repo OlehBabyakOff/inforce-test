@@ -20,3 +20,29 @@ export const VALIDATION_ERRORS = {
   },
 };
 
+export const APP_ERRORS = {
+  BAD_REQUEST: {
+    statusCode: 400,
+    status: 'BAD_REQUEST',
+    message: 'Bad request',
+  },
+
+  UNAUTHORIZED: {
+    statusCode: 401,
+    status: 'UNAUTHORIZED',
+    message: 'Unauthorized',
+  },
+
+  FORBIDDEN: {
+    statusCode: 403,
+    status: 'FORBIDDEN',
+    message: 'Forbidden',
+  },
+
+  NOT_FOUND: {
+    statusCode: 404,
+    status: 'NOT_FOUND',
+    message: 'Resource not found',
+  },
+};
+
