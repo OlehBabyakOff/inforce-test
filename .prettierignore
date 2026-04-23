@@ -1,0 +1,17 @@
+node_modules
+.pnpm
+
+# build output
+dist
+build
+
+# env files
+.env
+.env.*
+
+# lock files
+pnpm-lock.yaml
+package-lock.json
+
+# IDE
+.vscode
