@@ -8,6 +8,11 @@ interface Env {
   NODE_ENV: 'development' | 'production';
   PORT: number;
 
+  MONGODB: {
+    URI: string;
+    DB_NAME: string;
+  };
+
   REDIS: {
     HOST: string;
     PORT: number;
@@ -26,6 +31,12 @@ export const ENV = (() => {
     NODE_ENV: process.env.NODE_ENV,
     PORT: process.env.PORT,
     CORS_ORIGIN: process.env.CORS_ORIGIN,
+
+    MONGODB: {
+      URI: process.env.MONGO_URI,
+      DB_NAME: process.env.MONGO_DB_NAME,
+    },
+
     REDIS: {
       HOST: process.env.REDIS_HOST,
       PORT: process.env.REDIS_PORT,
@@ -45,7 +56,7 @@ export const ENV = (() => {
     return {
       NODE_ENV: validatedEnv.NODE_ENV,
       PORT: validatedEnv.PORT,
-
+      MONGODB: validatedEnv.MONGODB,
       REDIS: validatedEnv.REDIS,
     };
   } catch (error: any) {

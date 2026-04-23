@@ -5,6 +5,13 @@ export const envSchema = Joi.object()
     NODE_ENV: Joi.string().valid('development', 'production').default('development'),
     PORT: Joi.number().port().default(3000),
 
+    MONGODB: Joi.object()
+      .keys({
+        URI: Joi.string().uri().required(),
+        DB_NAME: Joi.string().required(),
+      })
+      .required(),
+
     REDIS: Joi.object()
       .keys({
         HOST: Joi.string().hostname().default('localhost'),
