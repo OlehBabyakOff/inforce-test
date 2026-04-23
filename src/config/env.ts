@@ -1,30 +1,10 @@
 import 'dotenv/config';
 
+import type { Env } from './interfaces/env.interface.js';
+
 import { validator } from '../infrastructure/validator/joi.validator.js';
 
 import { envSchema } from '../schemas/env.schema.js';
-
-interface Env {
-  NODE_ENV: 'development' | 'production';
-  PORT: number;
-
-  MONGODB: {
-    URI: string;
-    DB_NAME: string;
-  };
-
-  REDIS: {
-    HOST: string;
-    PORT: number;
-    USER: string;
-    PASSWORD: string;
-    KEY_PREFIX: string;
-    MAX_RETRIES_PER_REQUEST: number;
-    ENABLE_OFFLINE_QUEUE: boolean;
-    CONNECT_TIMEOUT: number;
-    COMMAND_TIMEOUT: number;
-  };
-}
 
 export const ENV = (() => {
   const envToValidate = {
