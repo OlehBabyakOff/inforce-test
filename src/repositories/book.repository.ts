@@ -17,7 +17,7 @@ class BookRepository implements IBookRepository {
     return book;
   }
 
-  async update(id: string, data: UpdateBook): Promise<Book | null> {
+  async update(id: string, data: UpdateBook): Promise<Book> {
     const book = await bookModel.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
@@ -40,7 +40,7 @@ class BookRepository implements IBookRepository {
     return true;
   }
 
-  async findById(id: string): Promise<Book | null> {
+  async findById(id: string): Promise<Book> {
     const book = await bookModel.findById(id);
 
     if (!book) {
@@ -50,7 +50,7 @@ class BookRepository implements IBookRepository {
     return book;
   }
 
-  async findAll(page: number = 1, limit: number = 10): Promise<Book[]> {
+  async findAll(page: number = 1, limit: number = 10): Promise<{ books: Book[]; total: number }> {
     const skip = (page - 1) * limit;
 
     const books: Book[] = await bookModel.aggregate([
@@ -68,7 +68,9 @@ class BookRepository implements IBookRepository {
       },
     ]);
 
-    return books;
+    const total = await bookModel.countDocuments();
+
+    return { books, total };
   }
 }
 

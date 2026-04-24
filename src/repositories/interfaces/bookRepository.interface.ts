@@ -15,7 +15,7 @@ export interface UpdateBook {
 export interface BookRepository {
   create(data: CreateBook): Promise<Book>;
   findById(id: string): Promise<Book | null>;
-  findAll(): Promise<Book[]>;
+  findAll(): Promise<{ books: Book[]; total: number }>;
   update(id: string, data: UpdateBook): Promise<Book | null>;
   delete(id: string): Promise<boolean>;
 }

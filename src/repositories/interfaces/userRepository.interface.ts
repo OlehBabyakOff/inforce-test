@@ -18,7 +18,7 @@ export interface UpdateUser {
 export interface UserRepository {
   create(data: CreateUser): Promise<User>;
   findById(id: string): Promise<User | null>;
-  findAll(): Promise<User[]>;
+  findAll(page: number, limit: number): Promise<{ users: User[]; total: number }>;
   update(id: string, data: UpdateUser): Promise<User | null>;
   delete(id: string): Promise<boolean>;
 }

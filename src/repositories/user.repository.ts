@@ -17,7 +17,7 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  async update(id: string, data: UpdateUser): Promise<User | null> {
+  async update(id: string, data: UpdateUser): Promise<User> {
     const user = await userModel.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
@@ -40,7 +40,7 @@ class UserRepository implements IUserRepository {
     return true;
   }
 
-  async findById(id: string): Promise<User | null> {
+  async findById(id: string): Promise<User> {
     const user = await userModel.findById(id);
 
     if (!user) {
@@ -50,7 +50,13 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  async findAll(page: number = 1, limit: number = 10): Promise<User[]> {
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await userModel.findOne({ email });
+
+    return user;
+  }
+
+  async findAll(page: number = 1, limit: number = 10): Promise<{ users: User[]; total: number }> {
     const skip = (page - 1) * limit;
 
     const users: User[] = await userModel.aggregate([
@@ -68,7 +74,9 @@ class UserRepository implements IUserRepository {
       },
     ]);
 
-    return users;
+    const total = await userModel.countDocuments();
+
+    return { users, total };
   }
 }
 
