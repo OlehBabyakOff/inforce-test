@@ -47,7 +47,7 @@ class JwtClient implements IJwtClient {
     secret: string,
     expiresIn: SignOptions['expiresIn'],
   ): string {
-    return jwt.sign(payload, secret, { expiresIn }) as string;
+    return jwt.sign(payload, secret, { expiresIn });
   }
 }
 
