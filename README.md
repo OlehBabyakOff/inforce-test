@@ -57,11 +57,11 @@ pnpm start
 ```bash
 # Development
 docker build --target dev -t inforce-test:dev .
-docker run -p 3000:3000 inforce-test:dev
+docker run -p 3000:3000 --env-file .env inforce-test:dev
 
 # Production
 docker build --target prod -t inforce-test:prod .
-docker run -p 3000:3000 inforce-test:prod
+docker run -p 3000:3000 --env-file .env.prod inforce-test:prod
 ```
 
 ## API Endpoints
