@@ -10,7 +10,18 @@ export const ENV = (() => {
   const envToValidate = {
     NODE_ENV: process.env.NODE_ENV,
     PORT: process.env.PORT,
-    CORS_ORIGIN: process.env.CORS_ORIGIN,
+
+    CACHE: {
+      ENTITY_CACHE_TTL: process.env.ENTITY_CACHE_TTL,
+      REFRESH_TOKEN_CACHE_TTL: process.env.REFRESH_TOKEN_CACHE_TTL,
+      ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY,
+      REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY,
+    },
+
+    JWT: {
+      ACCESS_TOKEN_SECRET: process.env.JWT_ACCESS_TOKEN_SECRET,
+      REFRESH_TOKEN_SECRET: process.env.JWT_REFRESH_TOKEN_SECRET,
+    },
 
     MONGODB: {
       URI: process.env.MONGO_URI,
@@ -36,6 +47,8 @@ export const ENV = (() => {
     return {
       NODE_ENV: validatedEnv.NODE_ENV,
       PORT: validatedEnv.PORT,
+      CACHE: validatedEnv.CACHE,
+      JWT: validatedEnv.JWT,
       MONGODB: validatedEnv.MONGODB,
       REDIS: validatedEnv.REDIS,
     };
