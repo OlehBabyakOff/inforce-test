@@ -20,11 +20,23 @@ export const VALIDATION_ERRORS = {
   },
 };
 
-export const APP_ERRORS = {
-  BAD_REQUEST: {
-    statusCode: 400,
-    status: 'BAD_REQUEST',
-    message: 'Bad request',
+export const AUTH_ERRORS = {
+  TOKEN_EXPIRED: {
+    message: 'Token has expired',
+    status: 'TOKEN_EXPIRED',
+    statusCode: 401,
+  },
+
+  INVALID_TOKEN: {
+    message: 'Invalid token',
+    status: 'INVALID_TOKEN',
+    statusCode: 401,
+  },
+
+  INVALID_CREDENTIALS: {
+    message: 'Invalid credentials',
+    status: 'INVALID_CREDENTIALS',
+    statusCode: 401,
   },
 
   UNAUTHORIZED: {
@@ -37,6 +49,14 @@ export const APP_ERRORS = {
     statusCode: 403,
     status: 'FORBIDDEN',
     message: 'Forbidden',
+  },
+};
+
+export const APP_ERRORS = {
+  BAD_REQUEST: {
+    statusCode: 400,
+    status: 'BAD_REQUEST',
+    message: 'Bad request',
   },
 
   NOT_FOUND: {

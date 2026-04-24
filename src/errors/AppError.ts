@@ -21,19 +21,5 @@ export class AppError extends BaseError {
       contextFn: this.NOT_FOUND,
     });
   }
-
-  static UNAUTHORIZED(message?: string) {
-    return new this(APP_ERRORS.UNAUTHORIZED.statusCode, APP_ERRORS.UNAUTHORIZED.status, {
-      message: message || APP_ERRORS.UNAUTHORIZED.message,
-      contextFn: this.UNAUTHORIZED,
-    });
-  }
-
-  static FORBIDDEN(message?: string) {
-    return new this(APP_ERRORS.FORBIDDEN.statusCode, APP_ERRORS.FORBIDDEN.status, {
-      message: message || APP_ERRORS.FORBIDDEN.message,
-      contextFn: this.FORBIDDEN,
-    });
-  }
 }
 
