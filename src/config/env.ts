@@ -29,10 +29,7 @@ export const ENV = (() => {
     },
 
     REDIS: {
-      HOST: process.env.REDIS_HOST,
-      PORT: process.env.REDIS_PORT,
-      USER: process.env.REDIS_USER,
-      PASSWORD: process.env.REDIS_PASSWORD,
+      URL: process.env.REDIS_URL,
       KEY_PREFIX: process.env.REDIS_KEY_PREFIX,
       MAX_RETRIES_PER_REQUEST: process.env.REDIS_MAX_RETRIES_PER_REQUEST,
       ENABLE_OFFLINE_QUEUE: process.env.REDIS_ENABLE_OFFLINE_QUEUE,

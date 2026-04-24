@@ -34,10 +34,7 @@ export const envSchema = Joi.object()
 
     REDIS: Joi.object()
       .keys({
-        HOST: Joi.string().hostname().default('localhost'),
-        PORT: Joi.number().port().default(6379),
-        USER: Joi.string().allow('').default(''),
-        PASSWORD: Joi.string().allow('').default(''),
+        URL: Joi.string().uri().required(),
         KEY_PREFIX: Joi.string().default('api:'),
         MAX_RETRIES_PER_REQUEST: Joi.number().integer().min(0).default(2),
         ENABLE_OFFLINE_QUEUE: Joi.boolean().default(true),

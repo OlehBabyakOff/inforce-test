@@ -22,10 +22,7 @@ export interface Env {
   };
 
   REDIS: {
-    HOST: string;
-    PORT: number;
-    USER: string;
-    PASSWORD: string;
+    URL: string;
     KEY_PREFIX: string;
     MAX_RETRIES_PER_REQUEST: number;
     ENABLE_OFFLINE_QUEUE: boolean;

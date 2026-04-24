@@ -11,12 +11,7 @@ class RedisClient implements IRedisClient {
   private client: RedisType;
 
   constructor() {
-    this.client = new Redis({
-      host: ENV.REDIS.HOST,
-      port: ENV.REDIS.PORT,
-      username: ENV.REDIS.USER,
-      password: ENV.REDIS.PASSWORD,
-
+    this.client = new Redis(ENV.REDIS.URL, {
       lazyConnect: true,
       keyPrefix: ENV.REDIS.KEY_PREFIX,
 
