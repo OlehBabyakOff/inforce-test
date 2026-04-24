@@ -9,8 +9,8 @@ This is a Node.js/TypeScript backend application built with Express.js, implemen
 - **Runtime**: Node.js (v22)
 - **Language**: TypeScript
 - **Framework**: Express.js
-- **Database**: MongoDB
-- **Cache**: Redis
+- **Database**: MongoDB (cloud-hosted via MongoDB Atlas)
+- **Cache**: Redis (cloud-hosted via Redis Cloud)
 - **Authentication**: JWT (access and refresh tokens)
 - **Validation**: Joi
 - **Logging**: Pino
