@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import { authMiddleware } from '../middlewares/auth.middleware.js';
+
 import { authRouter } from './auth.router.js';
 import { usersRouter } from './users.router.js';
 import { booksRouter } from './books.router.js';
@@ -11,6 +13,9 @@ router.get('/health', (_, res) => {
 });
 
 router.use('/', authRouter);
+
+router.use(authMiddleware);
+
 router.use('/users', usersRouter);
 router.use('/books', booksRouter);
 

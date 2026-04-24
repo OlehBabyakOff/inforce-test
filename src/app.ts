@@ -22,7 +22,7 @@ export async function startApp() {
 
   app.use(requestLogger());
 
-  app.use(router);
+  app.use('/api', router);
 
   app.use(notFound());
 

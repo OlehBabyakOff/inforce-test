@@ -17,7 +17,7 @@ async function main() {
       logger.info(`Server is running on port ${ENV.PORT.toString()}`);
     });
 
-    const shutdown = async (signal: string, exitCode = 0): Promise<void> => {
+    const shutdown = async (signal: string, exitCode: number = 0): Promise<void> => {
       logger.info(`Received ${signal}, shutting down`);
 
       await new Promise<void>((resolve) => {
