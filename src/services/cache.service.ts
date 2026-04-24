@@ -1,5 +1,7 @@
 import { redisClient } from '../infrastructure/redis/redisClient.js';
 
+import { ENV } from '../config/env.js';
+
 class CacheService {
   private redis = redisClient.getClient();
 
@@ -28,13 +30,50 @@ class CacheService {
   }
 
   async invalidate(pattern: string): Promise<void> {
-    const stream = this.redis.scanStream({ match: pattern, count: 100 }) as AsyncIterable<string[]>;
+    const fullPattern = `${ENV.REDIS.KEY_PREFIX}${pattern}`;
 
-    for await (const keys of stream) {
-      if (keys.length) {
-        await this.redis.del(...keys);
-      }
+    const keys: string[] = [];
+
+    let cursor = '0';
+
+    do {
+      const result = await this.redis.scan(cursor, 'MATCH', fullPattern, 'COUNT', 100);
+
+      cursor = result[0];
+
+      keys.push(...result[1]);
+    } while (cursor !== '0');
+
+    if (keys.length > 0) {
+      const cleanKeys = keys.map((key) => key.replace(ENV.REDIS.KEY_PREFIX, ''));
+
+      await this.redis.del(...cleanKeys);
     }
+  }
+
+  buildCacheKey(prefix: string, params?: Record<string, unknown>): string {
+    if (!params || !Object.keys(params).length) {
+      return prefix;
+    }
+
+    const serialized = Object.entries(params)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, value]) => `${key}=${this.serialize(value)}`)
+      .join(':');
+
+    return `${prefix}:${serialized}`;
+  }
+
+  private serialize(value: any): string {
+    if (value === null || value === undefined) {
+      return 'null';
+    }
+
+    if (typeof value === 'object') {
+      return JSON.stringify(value);
+    }
+
+    return String(value);
   }
 }
 
